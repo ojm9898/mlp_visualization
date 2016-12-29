@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/gojs/1.6.7/go-debug.js"></script>
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type = "text/javascript" src = "./MLP.js"></script>
+<script type = "text/javascript" src = "./main_handler.js"></script>
+<script type = "text/javascript" src = "./Go_handler.js"></script>
+<title>MLP Visualizaion</title>
+<style type="text/css">
+    html, body { height:100%; overflow:hidden }
+</style>
+</head> 
+<body = onload="frame()">
+<form>
+# of Hidden Layer : <select style="width:85px;" id="nHiddenId" name ="nHidden">
+    <option id = "default" value = "">Select</option>
+    <option id = "1" value = "1">1</option>
+    <option id = "2" value = "2">2</option>
+    <option id = "3" value = "3">3</option>
+    <option id = "4" value = "4">4</option>
+    <option id = "5" value = "5">5</option>
+</select>
+&nbsp; &nbsp; &nbsp; &nbsp;# of Hidden Layer's node : <select style="width:85px;" id="nHiddenNodeId" name ="nHiddenNode">
+    <option value = "">Select</option>
+    <option value = "1">1</option>
+    <option value = "2">2</option>
+    <option value = "3">3</option>
+    <option value = "4">4</option>
+    <option value = "5">5</option>
+</select>
+&nbsp; &nbsp; &nbsp; &nbsp;
+<input type="button" onclick="setup();" value = "Setup" />
+&nbsp; &nbsp; &nbsp; &nbsp;
+<input type="button" style= "height : 50px;" onclick="full_train();" value = "Full_Training" />
+<br></br>
+Input 1 : <input type = "text" id = "input1">
+&nbsp; &nbsp; &nbsp; &nbsp;
+Input 2 : <input type = "text" id = "input2">  
+&nbsp; &nbsp; &nbsp; &nbsp;
+<input type="button" onclick="predict();" value = "Predict" />
+&nbsp; &nbsp; &nbsp; &nbsp;
+<input type="button" style= "height : 50px;" onclick="train_once();" value = "Training once" />
+</form>
+<div id="Diag" style="border : solid 1px black; padding : 10px; height:80%; background-color: white;"></div>
+</body>
+</html>
