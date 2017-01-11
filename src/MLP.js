@@ -34,7 +34,7 @@ function MLP(nHidden, nHiddenNode) {
 	for(var i=0; i<=this.nHiddenNode; i++){
 		temp[i] = [];
 		for(var j=0; j<=this.nInput; j++)
-			temp[i][j] = Math.random()-0.5; 
+			temp[i][j] = Math.random()/10000000000000.0; 
 	}
 	this.weightList.push(temp);
 	for(var c=1; c<this.nHidden;c++){
@@ -42,7 +42,7 @@ function MLP(nHidden, nHiddenNode) {
 		for(var i=0; i<=this.nHiddenNode; i++){
 			temp2[i] = [];
 			for(var j=0; j<=this.nHiddenNode; j++)
-				temp2[i][j] = Math.random()-0.5;
+				temp2[i][j] = Math.random()/10000000000000.0;
 		}
 		this.weightList.push(temp2);
 	}
@@ -50,7 +50,7 @@ function MLP(nHidden, nHiddenNode) {
 	for(var i=0; i<=this.nOutput; i++){
 		temp3[i] = [];
 		for(var j=0; j<=this.nHiddenNode; j++)
-			temp3[i][j] = Math.random()-0.5;
+			temp3[i][j] = Math.random()/10000000000000.0;
 	}
 	this.weightList.push(temp3);
 }
@@ -113,17 +113,17 @@ MLP.prototype.BackProp = function(rOutput){
 		}
 	}
 	
-	for(var i=1; i<=this.nOutput; i++){
+	for(var i=0; i<=this.nOutput; i++){
 		for(var j=0; j<=this.nHiddenNode; j++)
 			this.weightList[this.nHidden][i][j] += this.learningrate * errorOutput.node[i] * this.hiddenLayers[this.nHidden-1].node[j];
 	}
 	
 	for(var i=this.nHidden-1; i>0; i--)
-		for(var j=1; j<=this.nHiddenNode; j++)
+		for(var j=0; j<=this.nHiddenNode; j++)
 			for(var k=0; k<=this.nHiddenNode; k++)
 				this.weightList[i][j][k] += this.learningrate * errorHiddens[i].node[j] * this.hiddenLayers[i-1].node[k];
 	
-	for(var i=1; i<=this.nHiddenNode; i++)
+	for(var i=0; i<=this.nHiddenNode; i++)
 		for(var j=0; j<=this.nInput; j++)
 			this.weightList[0][i][j] += this.learningrate * errorHiddens[0].node[i] * this.inputLayer.node[j];
 
@@ -132,7 +132,7 @@ MLP.prototype.Train = function(_inputList){
 	var inputList = _inputList;
 	var tempOutput = [];
 	for (var i=0; i<inputList.length; i++){
-		if((inputList[i][0] != inputList[i][1]) && ((inputList[i][0] == 1)||(inputList[i][1]==1)))
+		if((inputList[i][0] == inputList[i][1]) &&(inputList[i][0] == 1))
 			tempOutput[0] = 1;
 		else
 			tempOutput[0] = 0;
